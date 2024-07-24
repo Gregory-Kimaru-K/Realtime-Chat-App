@@ -1,4 +1,125 @@
-body {
-    background: black;
-    color: #fff;
+:root {
+    --color1 : rgb(52,52,52);
+    --color2 : rgb(51,51,51);
+    --color3 : rgb(0,0,54);
+    --color4 : rgb(0,0,57);
+    --color5 : rgb(248,248,255);
+    --color6 : rgb(173,255,47);
 }
+
+body {
+    background: var(--color1);
+    color: var(--color5);
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*
+ ##########
+ ###############
+ ####################
+ ##### HEAD SECTION
+ ####################
+ ###############
+ ##########
+*/
+
+header {
+    width: 100%;
+    height: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--color3);
+
+}
+
+header img {
+    height: 100%;
+    width: 8%;
+}
+
+/*
+ ##########
+ ###############
+ ####################
+ ##### FOOTER SECTION
+ ####################
+ ###############
+ ##########
+*/
+
+footer {
+    position: fixed;
+    background-color: var(--color3);
+    bottom: 0;
+    width: 100%;
+    height: 56px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer a {
+    position: relative;
+    text-decoration: none;
+}
+
+footer a svg {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    background: var(--color4);
+    border-radius: 50%;
+    transition: .5s;
+}
+
+footer a svg path {
+    fill: var(--color5);
+}
+
+footer a svg:hover {
+    background-color: var(--color6);
+    transform: translateY(-20px);
+    border: 8px solid rgb(52,52,52);
+}
+
+footer a:hover::before {
+    content: '';
+    position: absolute;
+    left: -18px;
+    top: 10%;
+    width: 20px;
+    height: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 2px -10px 0 0 var(--color1);
+    background: transparent;
+}
+
+footer a:hover:after {
+    content: '';
+    position: absolute;
+    right: -18px;
+    top: 10%;
+    width: 20px;
+    height: 20px;
+    border-top-left-radius: 20px;
+    box-shadow: -3px -10px 0 0 var(--color1);
+    background: transparent;
+}
+
+footer a svg:hover path {
+    fill: #000;
+}
+
+/*
+ ##########
+ ###############
+ ####################
+ ##### HEAD SECTION
+ ####################
+ ###############
+ ##########
+*

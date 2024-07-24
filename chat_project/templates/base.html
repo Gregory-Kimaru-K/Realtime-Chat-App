@@ -23,7 +23,7 @@
         {% endblock %}
     </div>
     <footer>
-        <a href="">
+        <a class="anchor" href="{% url 'theme' %}" data-url="{% url 'theme' %}">
             <?xml version="1.0" standalone="no"?>
             <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
             "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
@@ -62,7 +62,7 @@
             </svg>
 
         </a>
-        <a href="">
+        <a class="anchor active" href="{% url 'land' %}" data-url="{% url 'land' %}">
             <?xml version="1.0" standalone="no"?>
             <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
             "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
@@ -87,7 +87,7 @@
             </svg>
 
         </a>
-        <a href="">
+        <a class="anchor" href="{% url 'grp' %}" data-url="{% url 'grp' %}">
             <?xml version="1.0" standalone="no"?>
             <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
             "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
@@ -124,6 +124,51 @@
 
         </a>
     </footer>
-    <script></script>
+    <script>
+        btns = document.querySelectorAll('.anchor');
+        container = document.querySelector('.main-cont');
+        btns.forEach(btn => {
+            btn.addEventListener('click', function(event){
+                event.preventDefault();
+                let url = this.getAttribute('data-url');
+
+                fetch(url)
+                    .then(response => response.text())
+                    .then(html => {
+                        let tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = html;
+                        newContent = tempDiv.querySelector('.main-cont');
+                        if (newContent) {
+                            container.innerHTML = newContent.innerHTML;
+                            truncateSummaries();
+                        }
+                        else{
+                            console.log('no content found');
+                        };
+                        btns.forEach(a => a.classList.remove('active'));
+                        this.classList.add('active');
+                    })
+                    .catch(err => console.log('Error loading page : ', err));
+            });
+        });
+    </script>
+    <script>
+        function truncateSummaries() {
+            let msgSummaries = document.querySelectorAll(".p-sum");
+            msgSummaries.forEach(function(msgSummary){
+                let fullText = msgSummary.textContent;
+                let words = fullText.split(/\s+/).filter(word => word.trim().length > 0);
+                if (words.length > 10) {
+                    let firstTen = words.slice(0, 10).join(" ");
+                    msgSummary.textContent = firstTen + '...';
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            truncateSummaries();
+        });
+
+    </script>
 </body>
 </html>

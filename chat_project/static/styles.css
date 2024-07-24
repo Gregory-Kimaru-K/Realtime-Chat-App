@@ -80,13 +80,13 @@ footer a svg path {
     fill: var(--color5);
 }
 
-footer a svg:hover {
+footer .active svg {
     background-color: var(--color6);
     transform: translateY(-20px);
     border: 8px solid rgb(52,52,52);
 }
 
-footer a:hover::before {
+footer .active::before {
     content: '';
     position: absolute;
     left: -18px;
@@ -98,7 +98,7 @@ footer a:hover::before {
     background: transparent;
 }
 
-footer a:hover:after {
+footer .active::after {
     content: '';
     position: absolute;
     right: -18px;
@@ -110,7 +110,7 @@ footer a:hover:after {
     background: transparent;
 }
 
-footer a svg:hover path {
+footer .active svg path {
     fill: #000;
 }
 
@@ -118,8 +118,30 @@ footer a svg:hover path {
  ##########
  ###############
  ####################
- ##### HEAD SECTION
+ ##### OVERVIEW MSG SECTION
  ####################
  ###############
  ##########
-*
+*/
+.msg {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    border-top: 2px solid var(--color6);
+    border-bottom: 2px solid var(--color6);
+    cursor: pointer;
+}
+
+.msg .user-image {
+    width: 30%;
+}
+
+.msg .user-image img {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+}
+
+.msg .user-name {
+    width: 30%;
+}
